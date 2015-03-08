@@ -24,11 +24,12 @@ setup(name='galcore',
       url='https://github.com/adoc/',
       keywords='gallery media',
       packages=find_packages(),
+      package_data={'galcore': ['tests/data/*.*']},
       include_package_data=True,
       zip_safe=False,
-      test_suite='galcore',
+      test_suite='tests',
       install_requires=requires,
-      test_requires=[],
+      tests_require=['nose'],
       entry_points= """\
       """
       )

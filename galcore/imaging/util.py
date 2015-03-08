@@ -1,4 +1,6 @@
 """Imaging utilities.
+
+Python 3 only due to float handling in preserve_aspect. "Deal with it..."
 """
 
 import math
@@ -27,8 +29,6 @@ def preserve_aspect(x, y, *bound):
     x, y  - dimensions to be bound.
     bound - args containing the constraints to bind the x and/or y to.
     """
-
-    x, y = float(x), float(y)
 
     bound_x, *bound_y = bound   # py3 only. <3
 

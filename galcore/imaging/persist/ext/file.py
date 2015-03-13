@@ -17,6 +17,7 @@ class DataFile:
         """
 
         self._filepath = filepath
+        self.data = init_data
 
         try:
             fp = open(self._filepath, "rb")
@@ -26,7 +27,7 @@ class DataFile:
             try:
                 self.data = pickle.load(fp)
             except EOFError:
-                self.data = init_data
+                pass
 
     def save(self):
         """
@@ -60,13 +61,13 @@ class Persistence:
             if not os.path.exists(self.directory):
                 os.makedirs(self.directory)
 
-        checksum_filepath = checksum_filepath or os.path.join([self.directory,
-                                                               'checksum.dat'])
+        checksum_filepath = checksum_filepath or os.path.join(self.directory,
+                                                               'checksum.dat')
         self.checksum_file = DataFile(checksum_filepath)
         self.checksum_map = model.ChecksumMap(self.checksum_file.data)
 
-        metadata_filepath = metadata_filepath or os.path.join([self.directory,
-                                                               'metadata.dat'])
+        metadata_filepath = metadata_filepath or os.path.join(self.directory,
+                                                               'metadata.dat')
         self.metadata_file = DataFile(metadata_filepath)
         self.metadata = model.MetaData(self.metadata_file.data)
 

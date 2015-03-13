@@ -2,6 +2,7 @@
 """
 
 import os
+import shutil
 import uuid
 import tempfile
 import unittest
@@ -36,3 +37,13 @@ class TestPersistExtFile(unittest.TestCase):
         self.assertEqual(data_file.data, {'foo': 'bar', 'bar': 'baz'})
 
         os.unlink(tmp_path)
+
+    def test_persistence(self):
+        tmp_path = os.path.join(tempfile.gettempdir(), str(uuid.uuid4()))
+
+        persistence = galcore.imaging.persist.ext.file.Persistence(tmp_path)
+
+        self.assertTrue(os.path.exists(os.path.join(tmp_path, 'checksum.dat')))
+        self.assertTrue(os.path.exists(os.path.join(tmp_path, 'metadata.dat')))
+
+        shutil.rmtree(tmp_path)

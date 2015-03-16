@@ -9,11 +9,12 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    'pillow'
+    'pillow',
+    'sqlalchemy'
     ]
 
 setup(name='galcore',
-      version='0.0.1',
+      version='0.0.2',
       description='',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[

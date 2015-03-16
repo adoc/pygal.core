@@ -1,2 +1,0 @@
-"""Image persistence handling.
-"""
